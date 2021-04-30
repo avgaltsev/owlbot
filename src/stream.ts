@@ -6,6 +6,7 @@ import {StreamConfig} from "./config";
 
 const CHANNEL_URL = "https://www.youtube.com/channel/UCiAInBL9kUzz1XRxk66v-gw";
 const STREAM_SELECTOR = "ytd-thumbnail-overlay-now-playing-renderer";
+const CHAT_BUTTON_SELECTOR = "ytd-live-chat-frame #show-hide-button";
 
 export class Stream {
 	private url: string;
@@ -54,6 +55,10 @@ export class Stream {
 			await page.waitForSelector(STREAM_SELECTOR);
 			await page.click(STREAM_SELECTOR);
 			// await page.waitForNavigation();
+			await page.waitForTimeout(5000);
+			await page.waitForSelector(CHAT_BUTTON_SELECTOR);
+			await page.click(CHAT_BUTTON_SELECTOR);
+			await page.evaluate("window.scrollTo(0, 0);");
 			await page.waitForTimeout(5000);
 		} catch (error) {
 			const errorScreenshot = await this.getScreenshot(page);
