@@ -17,12 +17,14 @@
 		"@somethings/eslint-config-typescript"
 	],
 	"rules": {
+		// Disabling `camelcase` rule to support Telegram API snake_case property names.
+		"camelcase": "off"
 	},
 	"overrides": [
 		{
 			"files": ["*.ts"],
 			"rules": {
-				"camelcase": "off",
+				// Adding `objectLiteralProperty` selector to support Telegram API snake_case property names.
 				"@typescript-eslint/naming-convention": [
 					"error",
 					{
