@@ -1,6 +1,7 @@
 import {BotConfig, StreamConfig, ScheduleEntry, ScheduleEntryConfig} from "./config";
 import {Bot} from "./bot";
 import {Stream} from "./stream";
+import {isStreamError} from "./types";
 
 const START_ADVANCE = 5 * 60 * 1000; // Start stream 5 minutes early
 const GAME_DURATION = 2 * 60 * 60 * 1000; // Assume that one game lasts 2 hours maximum
@@ -95,10 +96,12 @@ export class Scheduler {
 
 			screenshotGroups.forEach((screenshotGroup) => this.bot.sendScreenshots(screenshotGroup));
 		} catch (error) {
-			if (error.screenshot !== undefined) {
-				this.bot.sendScreenshots([error.screenshot], error.message);
-			} else {
-				this.bot.sendMessage(error.message);
+			if (isStreamError(error)) {
+				if (error.screenshot !== undefined) {
+					this.bot.sendScreenshots([error.screenshot], error.message);
+				} else {
+					this.bot.sendMessage(error.message);
+				}
 			}
 		}
 	}
@@ -114,10 +117,12 @@ export class Scheduler {
 
 			screenshotGroups.forEach((screenshotGroup) => this.bot.sendScreenshots(screenshotGroup));
 		} catch (error) {
-			if (error.screenshot !== undefined) {
-				this.bot.sendScreenshots([error.screenshot], error.message);
-			} else {
-				this.bot.sendMessage(error.message);
+			if (isStreamError(error)) {
+				if (error.screenshot !== undefined) {
+					this.bot.sendScreenshots([error.screenshot], error.message);
+				} else {
+					this.bot.sendMessage(error.message);
+				}
 			}
 		}
 	}
@@ -134,10 +139,12 @@ export class Scheduler {
 
 			screenshotGroups.forEach((screenshotGroup) => this.bot.sendScreenshots(screenshotGroup));
 		} catch (error) {
-			if (error.screenshot !== undefined) {
-				this.bot.sendScreenshots([error.screenshot], error.message);
-			} else {
-				this.bot.sendMessage(error.message);
+			if (isStreamError(error)) {
+				if (error.screenshot !== undefined) {
+					this.bot.sendScreenshots([error.screenshot], error.message);
+				} else {
+					this.bot.sendMessage(error.message);
+				}
 			}
 		}
 	}

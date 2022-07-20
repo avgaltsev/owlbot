@@ -4,8 +4,8 @@ import {connect, Page} from "puppeteer-core";
 
 import {StreamConfig} from "./config";
 
-const CHANNEL_URL = "https://www.youtube.com/channel/UCiAInBL9kUzz1XRxk66v-gw";
-const STREAM_SELECTOR = "ytd-thumbnail-overlay-now-playing-renderer";
+const CHANNEL_URL = "https://www.youtube.com/c/overwatchleague/videos";
+const STREAM_SELECTOR = "ytd-thumbnail-overlay-time-status-renderer[overlay-style=\"LIVE\"]";
 const CHAT_BUTTON_SELECTOR = "ytd-live-chat-frame #show-hide-button";
 
 export class Stream {
@@ -64,7 +64,7 @@ export class Stream {
 			const errorScreenshot = await this.getScreenshot(page);
 
 			return Promise.reject({
-				message: error.message,
+				message: (error as Error).message,
 				screenshot: errorScreenshot,
 			});
 		}
@@ -104,7 +104,7 @@ export class Stream {
 			const errorScreenshot = await this.getScreenshot(page);
 
 			return Promise.reject({
-				message: error.message,
+				message: (error as Error).message,
 				screenshot: errorScreenshot,
 			});
 		}

@@ -52,3 +52,6 @@ Updating config
 sudo nano /var/lib/docker/volumes/owlbot-config/_data/config.json
 docker restart owlbot
 ```
+
+Overwatch League YouTube Channel:
+https://www.youtube.com/channel/UCiAInBL9kUzz1XRxk66v-gw
